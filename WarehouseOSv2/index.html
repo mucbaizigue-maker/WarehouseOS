@@ -153,46 +153,127 @@
         .search-box button:hover { background: var(--btn-primary-hover); }
         .search-results {
             background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px;
-            padding: 16px; margin-top: 8px; display: none; max-height: 300px; overflow-y: auto;
+            padding: 10px; margin-top: 8px; margin-bottom: 24px; display: none; max-height: 320px; overflow-y: auto;
         }
-        .search-results .result-item { padding: 8px; cursor: pointer; border-radius: 6px; color: var(--text-primary); }
+        .search-results .result-item {
+            display: flex; align-items: flex-start; gap: 12px; padding: 10px; cursor: pointer;
+            border-radius: 10px; color: var(--text-primary); transition: background var(--transition);
+        }
         .search-results .result-item:hover { background: var(--highlight-bg); }
-        .search-results .result-item strong { color: var(--sidebar-accent); }
+        .search-results .result-item i {
+            width: 34px; height: 34px; border-radius: 10px; background: var(--highlight-bg);
+            color: var(--sidebar-accent); display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .search-results .result-item:hover i { background: var(--card-bg); }
+        .search-results .result-item strong { color: var(--text-primary); font-size: 14px; }
+        .search-results .result-item p { color: var(--text-muted); font-size: 13px; line-height: 1.4; margin-top: 2px; }
+        .search-results .result-type {
+            display: inline-block; color: var(--sidebar-accent); font-size: 11px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0; margin-bottom: 2px;
+        }
+        .search-empty { color: var(--text-muted); padding: 10px; font-size: 14px; }
 
         .module-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; margin-top: 16px; }
         .module-card {
             background: var(--card-bg); border-radius: 16px; padding: 22px 24px;
             box-shadow: var(--shadow); border: 1px solid var(--card-border);
-            transition: transform var(--transition), box-shadow var(--transition); cursor: pointer;
+            transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+            cursor: pointer; display: flex; flex-direction: column; min-height: 220px;
         }
-        .module-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,0.06); border-color: #bdd3f0; }
+        .module-card:hover { transform: translateY(-6px); box-shadow: 0 18px 36px rgba(15,23,42,0.12); border-color: #bdd3f0; }
         .module-card:focus-visible { outline: 2px solid var(--sidebar-accent); outline-offset: 2px; }
         .module-card .card-icon { font-size: 26px; color: var(--sidebar-accent); margin-bottom: 10px; }
         .module-card h3 { font-size: 17px; font-weight: 600; margin-bottom: 6px; color: var(--text-primary); }
-        .module-card p { font-size: 14px; color: var(--text-muted); line-height: 1.5; }
+        .module-card p { font-size: 14px; color: var(--text-muted); line-height: 1.5; flex: 1; }
         .module-card .badge {
             display: inline-block; margin-top: 12px; font-size: 12px; background: #eef2ff;
             color: var(--sidebar-accent); padding: 4px 12px; border-radius: 20px; font-weight: 500;
         }
+        .module-card .module-footer {
+            display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 18px;
+        }
+        .module-card .module-count {
+            display: inline-flex; align-items: center; gap: 6px; color: var(--text-muted);
+            font-size: 13px; font-weight: 500;
+        }
+        .module-card .module-count i { color: var(--sidebar-accent); font-size: 13px; }
+        .module-card .module-action {
+            border: none; border-radius: 10px; background: var(--btn-primary); color: #fff;
+            padding: 8px 12px; font-size: 13px; font-weight: 600; cursor: pointer;
+            transition: background var(--transition), transform var(--transition);
+        }
+        .module-card .module-action:hover { background: var(--btn-primary-hover); transform: translateY(-1px); }
+        .module-card .module-action i { margin-left: 6px; font-size: 12px; }
 
         .home-kpi-grid {
             display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-bottom: 24px;
         }
         .home-kpi-card {
             background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px;
-            padding: 18px 20px; box-shadow: var(--shadow); display: flex; align-items: center; gap: 14px;
+            padding: 20px; box-shadow: var(--shadow); position: relative; min-height: 154px;
         }
         .home-kpi-card .kpi-icon {
-            width: 44px; height: 44px; border-radius: 12px; background: var(--highlight-bg);
+            width: 42px; height: 42px; border-radius: 12px; background: var(--highlight-bg);
             color: var(--sidebar-accent); display: flex; align-items: center; justify-content: center;
-            font-size: 18px; flex-shrink: 0;
+            font-size: 18px; position: absolute; top: 18px; right: 18px;
+        }
+        .home-kpi-card .kpi-content {
+            padding-right: 52px;
         }
         .home-kpi-card .kpi-value {
-            display: block; color: var(--text-primary); font-size: 24px; font-weight: 700; line-height: 1.1;
+            display: block; color: var(--sidebar-accent); font-size: 36px; font-weight: 800; line-height: 1;
         }
         .home-kpi-card .kpi-label {
-            display: block; color: var(--text-muted); font-size: 13px; margin-top: 4px;
+            display: block; color: var(--text-primary); font-size: 14px; font-weight: 700; margin-top: 10px;
         }
+        .home-kpi-card .kpi-description {
+            display: block; color: var(--text-muted); font-size: 12px; line-height: 1.4; margin-top: 6px;
+        }
+        .recent-activity {
+            background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px;
+            box-shadow: var(--shadow); padding: 20px 24px; margin-bottom: 24px;
+        }
+        .recent-activity h3 {
+            color: var(--text-primary); font-size: 18px; font-weight: 700; margin-bottom: 14px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .recent-activity h3 i { color: var(--sidebar-accent); }
+        .activity-list { display: flex; flex-direction: column; gap: 10px; }
+        .activity-item {
+            display: grid; grid-template-columns: 64px 140px 1fr; gap: 16px; align-items: center;
+            background: var(--highlight-bg); border: 1px solid var(--card-border); border-radius: 12px;
+            padding: 12px 14px;
+        }
+        .activity-time { color: var(--sidebar-accent); font-size: 14px; font-weight: 700; }
+        .activity-operation { color: var(--text-primary); font-size: 14px; font-weight: 600; }
+        .activity-description { color: var(--text-muted); font-size: 14px; line-height: 1.4; }
+        .alerts-section {
+            background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px;
+            box-shadow: var(--shadow); padding: 20px 24px; margin-bottom: 24px;
+        }
+        .alerts-section h3 {
+            color: var(--text-primary); font-size: 18px; font-weight: 700; margin-bottom: 14px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .alerts-section h3 i { color: var(--sidebar-accent); }
+        .alert-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+        .alert-card {
+            border: 1px solid var(--card-border); border-left-width: 4px; border-radius: 12px;
+            padding: 16px; background: var(--highlight-bg); display: flex; gap: 12px; align-items: flex-start;
+        }
+        .alert-card .alert-icon {
+            width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center;
+            justify-content: center; flex-shrink: 0; font-size: 15px;
+        }
+        .alert-card h4 { color: var(--text-primary); font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+        .alert-card p { color: var(--text-muted); font-size: 13px; line-height: 1.4; }
+        .alert-critical { border-left-color: #ef4444; }
+        .alert-critical .alert-icon { background: #fee2e2; color: #b91c1c; }
+        .alert-warning { border-left-color: #f59e0b; }
+        .alert-warning .alert-icon { background: #fef3c7; color: #b45309; }
+        .alert-blocked { border-left-color: #6366f1; }
+        .alert-blocked .alert-icon { background: #e0e7ff; color: #4338ca; }
 
         .module-detail {
             background: var(--card-bg); border-radius: 16px; padding: 28px 32px;
@@ -349,12 +430,14 @@
             .sidebar-footer { display: none; }
             .dark-toggle { margin: 4px auto; }
             .main-content { max-width: 100%; padding: 80px 16px 20px; }
+            .alert-grid { grid-template-columns: 1fr; }
             .module-grid { grid-template-columns: 1fr 1fr; }
             .simulator-panel .row { flex-direction: column; }
         }
         @media (max-width: 500px) {
             .home-kpi-grid { grid-template-columns: 1fr; }
             .module-grid { grid-template-columns: 1fr; }
+            .activity-item { grid-template-columns: 1fr; gap: 4px; }
         }
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #e9edf2; }
@@ -400,37 +483,88 @@
             <div class="home-kpi-grid" aria-label="Indicadores principais">
                 <div class="home-kpi-card">
                     <div class="kpi-icon"><i class="fas fa-truck-loading"></i></div>
-                    <div><strong class="kpi-value">128</strong><span class="kpi-label">Recebimentos Hoje</span></div>
+                    <div class="kpi-content"><strong class="kpi-value">128</strong><span class="kpi-label">Recebimentos Hoje</span><span class="kpi-description">Notas fiscais conferidas no turno atual.</span></div>
                 </div>
                 <div class="home-kpi-card">
                     <div class="kpi-icon"><i class="fas fa-shipping-fast"></i></div>
-                    <div><strong class="kpi-value">94</strong><span class="kpi-label">Expedições Hoje</span></div>
+                    <div class="kpi-content"><strong class="kpi-value">94</strong><span class="kpi-label">Expedições Hoje</span><span class="kpi-description">Pedidos separados e liberados para doca.</span></div>
                 </div>
                 <div class="home-kpi-card">
                     <div class="kpi-icon"><i class="fas fa-warehouse"></i></div>
-                    <div><strong class="kpi-value">78%</strong><span class="kpi-label">Ocupação do Armazém</span></div>
+                    <div class="kpi-content"><strong class="kpi-value">78%</strong><span class="kpi-label">Ocupação do Armazém</span><span class="kpi-description">Capacidade utilizada nas posições ativas.</span></div>
                 </div>
                 <div class="home-kpi-card">
                     <div class="kpi-icon"><i class="fas fa-clipboard-check"></i></div>
-                    <div><strong class="kpi-value">99,3%</strong><span class="kpi-label">Acuracidade do Estoque</span></div>
+                    <div class="kpi-content"><strong class="kpi-value">99,3%</strong><span class="kpi-label">Acuracidade do Estoque</span><span class="kpi-description">Conformidade entre físico e sistema.</span></div>
+                </div>
+            </div>
+            <div class="recent-activity" aria-label="Atividades recentes">
+                <h3><i class="fas fa-clock-rotate-left"></i> Atividades Recentes</h3>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <span class="activity-time">10:42</span>
+                        <span class="activity-operation">Recebimento</span>
+                        <span class="activity-description">NF 485 conferida</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-time">09:58</span>
+                        <span class="activity-operation">Movimentação</span>
+                        <span class="activity-description">Produto ABC movido para A02</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-time">09:21</span>
+                        <span class="activity-operation">Expedição</span>
+                        <span class="activity-description">Pedido 732 separado para doca 3</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-time">08:47</span>
+                        <span class="activity-operation">Inventário</span>
+                        <span class="activity-description">Contagem rotativa concluída no setor B</span>
+                    </div>
+                </div>
+            </div>
+            <div class="alerts-section" aria-label="Alertas operacionais">
+                <h3><i class="fas fa-triangle-exclamation"></i> Alertas</h3>
+                <div class="alert-grid">
+                    <div class="alert-card alert-critical">
+                        <div class="alert-icon"><i class="fas fa-arrow-trend-down"></i></div>
+                        <div>
+                            <h4>Estoque abaixo do mínimo</h4>
+                            <p>SKU PAR-204 com saldo crítico no endereço A01.</p>
+                        </div>
+                    </div>
+                    <div class="alert-card alert-warning">
+                        <div class="alert-icon"><i class="fas fa-clipboard-list"></i></div>
+                        <div>
+                            <h4>Inventário pendente</h4>
+                            <p>Contagem do setor C aguardando conferência.</p>
+                        </div>
+                    </div>
+                    <div class="alert-card alert-blocked">
+                        <div class="alert-icon"><i class="fas fa-ban"></i></div>
+                        <div>
+                            <h4>Endereço bloqueado</h4>
+                            <p>Posição B12 indisponível para movimentação.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Buscar em todos os módulos...">
+                <input type="text" id="searchInput" placeholder="Buscar módulos, glossário e documentos...">
                 <button id="searchBtn"><i class="fas fa-search"></i> Buscar</button>
             </div>
             <div class="search-results" id="searchResults"></div>
             <div class="module-grid" id="moduleGrid">
-                <div class="module-card" onclick="navigateTo('modulo1')" tabindex="0"><div class="card-icon"><i class="fas fa-cog"></i></div><h3>1. Gestão de Armazenagem</h3><p>Diretrizes, objetivos e boas práticas.</p><span class="badge">Referência</span></div>
-                <div class="module-card" onclick="navigateTo('modulo2')" tabindex="0"><div class="card-icon"><i class="fas fa-truck-loading"></i></div><h3>2. Recebimento e Conferência</h3><p>Fluxo de entrada, inspeção e registro.</p><span class="badge">Processo</span></div>
-                <div class="module-card" onclick="navigateTo('modulo3')" tabindex="0"><div class="card-icon"><i class="fas fa-map-pin"></i></div><h3>3. Endereçamento e Organização</h3><p>Codificação e layout do armazém.</p><span class="badge">Estrutura</span></div>
-                <div class="module-card" onclick="navigateTo('modulo4')" tabindex="0"><div class="card-icon"><i class="fas fa-cubes"></i></div><h3>4. Tipos de Armazenagem</h3><p>Blocado, porta‑paletes, drive‑in e mais.</p><span class="badge">Estrutura</span></div>
-                <div class="module-card" onclick="navigateTo('modulo5')" tabindex="0"><div class="card-icon"><i class="fas fa-arrows-alt-h"></i></div><h3>5. Movimentação Interna</h3><p>Equipamentos, fluxos e produtividade.</p><span class="badge">Operação</span></div>
-                <div class="module-card" onclick="navigateTo('modulo6')" tabindex="0"><div class="card-icon"><i class="fas fa-chart-line"></i></div><h3>6. Controle de Estoque</h3><p>Mínimo, máximo, ponto de reposição e giro.</p><span class="badge">Gestão</span></div>
-                <div class="module-card" onclick="navigateTo('modulo7')" tabindex="0"><div class="card-icon"><i class="fas fa-clipboard-list"></i></div><h3>7. Inventário e Acuracidade</h3><p>Tipos de contagem e correção de divergências.</p><span class="badge">Auditoria</span></div>
-                <div class="module-card" onclick="navigateTo('modulo8')" tabindex="0"><div class="card-icon"><i class="fas fa-shipping-fast"></i></div><h3>8. Expedição e Despacho</h3><p>Picking, packing, conferência e carregamento.</p><span class="badge">Processo</span></div>
-                <div class="module-card" onclick="navigateTo('modulo9')" tabindex="0"><div class="card-icon"><i class="fas fa-microchip"></i></div><h3>9. Tecnologias Aplicadas</h3><p>WMS, RFID, IoT, código de barras.</p><span class="badge">Inovação</span></div>
-                <div class="module-card" onclick="navigateTo('modulo10')" tabindex="0"><div class="card-icon"><i class="fas fa-tachometer-alt"></i></div><h3>10. Indicadores de Performance</h3><p>KPIs para monitorar a eficiência.</p><span class="badge">Métricas</span></div>
+                <div class="module-card" onclick="navigateTo('modulo1')" tabindex="0"><div class="card-icon"><i class="fas fa-cog"></i></div><h3>1. Gestão de Armazenagem</h3><p>Diretrizes, objetivos e boas práticas.</p><span class="badge">Referência</span><div class="module-footer"><span class="module-count"><i class="fas fa-boxes-stacked"></i> 18 itens</span><button class="module-action" type="button">Abrir módulo <i class="fas fa-arrow-right"></i></button></div></div>
+                <div class="module-card" onclick="navigateTo('modulo2')" tabindex="0"><div class="card-icon"><i class="fas fa-truck-loading"></i></div><h3>2. Recebimento e Conferência</h3><p>Fluxo de entrada, inspeção e registro.</p><span class="badge">Processo</span><div class="module-footer"><span class="module-count"><i class="fas fa-boxes-stacked"></i> 24 itens</span><button class="module-action" type="button">Abrir módulo <i class="fas fa-arrow-right"></i></button></div></div>
+                <div class="module-card" onclick="navigateTo('modulo3')" tabindex="0"><div class="card-icon"><i class="fas fa-map-pin"></i></div><h3>3. Endereçamento e Organização</h3><p>Codificação e layout do armazém.</p><span class="badge">Estrutura</span><div class="module-footer"><span class="module-count"><i class="fas fa-boxes-stacked"></i> 32 itens</span><button class="module-action" type="button">Abrir módulo <i class="fas fa-arrow-right"></i></button></div></div>
+                <div class="module-card" onclick="navigateTo('modulo4')" tabindex="0"><div class="card-icon"><i class="fas fa-cubes"></i></div><h3>4. Tipos de Armazenagem</h3><p>Blocado, porta‑paletes, drive‑in e mais.</p><span class="badge">Estrutura</span><div class="module-footer"><span class="module-count"><i class="fas fa-boxes-stacked"></i> 15 itens</span><button class="module-action" type="button">Abrir módulo <i class="fas fa-arrow-right"></i></button></div></div>
+                <div class="module-card" onclick="navigateTo('modulo5')" tabindex="0"><div class="card-icon"><i class="fas fa-arrows-alt-h"></i></div><h3>5. Movimentação Interna</h3><p>Equipamentos, fluxos e produtividade.</p><span class="badge">Operação</span><div class="module-footer"><span class="module-count"><i class="fas fa-boxes-stacked"></i> 41 itens</span><button class="module-action" type="button">Abrir módulo <i class="fas fa-arrow-right"></i></button></div></div>
+                <div class="module-card" onclick="navigateTo('modulo6')" tabindex="0"><div class="card-icon"><i class="fas fa-chart-line"></i></div><h3>6. Controle de Estoque</h3><p>Mínimo, máximo, ponto de reposição e giro.</p><span class="badge">Gestão</span><div class="module-footer"><span class="module-count"><i class="fas fa-boxes-stacked"></i> 36 itens</span><button class="module-action" type="button">Abrir módulo <i class="fas fa-arrow-right"></i></button></div></div>
+                <div class="module-card" onclick="navigateTo('modulo7')" tabindex="0"><div class="card-icon"><i class="fas fa-clipboard-list"></i></div><h3>7. Inventário e Acuracidade</h3><p>Tipos de contagem e correção de divergências.</p><span class="badge">Auditoria</span><div class="module-footer"><span class="module-count"><i class="fas fa-boxes-stacked"></i> 27 itens</span><button class="module-action" type="button">Abrir módulo <i class="fas fa-arrow-right"></i></button></div></div>
+                <div class="module-card" onclick="navigateTo('modulo8')" tabindex="0"><div class="card-icon"><i class="fas fa-shipping-fast"></i></div><h3>8. Expedição e Despacho</h3><p>Picking, packing, conferência e carregamento.</p><span class="badge">Processo</span><div class="module-footer"><span class="module-count"><i class="fas fa-boxes-stacked"></i> 22 itens</span><button class="module-action" type="button">Abrir módulo <i class="fas fa-arrow-right"></i></button></div></div>
+                <div class="module-card" onclick="navigateTo('modulo9')" tabindex="0"><div class="card-icon"><i class="fas fa-microchip"></i></div><h3>9. Tecnologias Aplicadas</h3><p>WMS, RFID, IoT, código de barras.</p><span class="badge">Inovação</span><div class="module-footer"><span class="module-count"><i class="fas fa-boxes-stacked"></i> 19 itens</span><button class="module-action" type="button">Abrir módulo <i class="fas fa-arrow-right"></i></button></div></div>
+                <div class="module-card" onclick="navigateTo('modulo10')" tabindex="0"><div class="card-icon"><i class="fas fa-tachometer-alt"></i></div><h3>10. Indicadores de Performance</h3><p>KPIs para monitorar a eficiência.</p><span class="badge">Métricas</span><div class="module-footer"><span class="module-count"><i class="fas fa-boxes-stacked"></i> 30 itens</span><button class="module-action" type="button">Abrir módulo <i class="fas fa-arrow-right"></i></button></div></div>
             </div>
         </section>
 
@@ -796,33 +930,158 @@
             alert(`📦 Expedição realizada: ${qtd}x ${item.nome} do endereço ${item.endereco}`);
         }
 
-        function buscarTermo(termo) {
-            const resultados = [];
-            const termoLower = termo.toLowerCase();
-            for (const [key, mod] of Object.entries(modulos)) {
-                if (mod.titulo.toLowerCase().includes(termoLower) || mod.conteudo.toLowerCase().includes(termoLower)) {
-                    const idx = mod.conteudo.toLowerCase().indexOf(termoLower);
-                    let trecho = '';
-                    if (idx >= 0) {
-                        const inicio = Math.max(0, idx - 40);
-                        const fim = Math.min(mod.conteudo.length, idx + termoLower.length + 80);
-                        trecho = mod.conteudo.substring(inicio, fim).replace(/<[^>]*>/g, ' ') + '...';
-                    }
-                    resultados.push({ key, titulo: mod.titulo, trecho });
-                }
-            }
-            return resultados;
+        const glossarioBusca = [
+            { tipo: 'Glossário', icone: 'fas fa-book', destino: 'glossario', titulo: 'WMS (Warehouse Management System)', descricao: 'Sistema de gerenciamento de armazém para estoque, endereçamento, recebimento e expedição.', keywords: 'sistema armazem gestão gerenciamento' },
+            { tipo: 'Glossário', icone: 'fas fa-book', destino: 'glossario', titulo: 'FIFO (First In, First Out)', descricao: 'Método em que o primeiro produto a entrar é o primeiro a sair.', keywords: 'pereciveis validade estoque' },
+            { tipo: 'Glossário', icone: 'fas fa-book', destino: 'glossario', titulo: 'LIFO (Last In, First Out)', descricao: 'Método em que o último produto a entrar é o primeiro a sair.', keywords: 'drive-in estrutura estoque' },
+            { tipo: 'Glossário', icone: 'fas fa-book', destino: 'glossario', titulo: 'Lead Time', descricao: 'Tempo total entre o pedido de compra e a chegada do produto no armazém.', keywords: 'prazo compra recebimento' },
+            { tipo: 'Glossário', icone: 'fas fa-book', destino: 'glossario', titulo: 'Picking', descricao: 'Processo de separação dos itens conforme o pedido do cliente.', keywords: 'separação coleta expedição' },
+            { tipo: 'Glossário', icone: 'fas fa-book', destino: 'glossario', titulo: 'Packing', descricao: 'Etapa de embalagem e identificação dos produtos separados.', keywords: 'embalagem expedição identificação' },
+            { tipo: 'Glossário', icone: 'fas fa-book', destino: 'glossario', titulo: 'RFID (Radio Frequency Identification)', descricao: 'Tecnologia de identificação por radiofrequência para leitura em lote.', keywords: 'tecnologia rastreabilidade automação' },
+            { tipo: 'Glossário', icone: 'fas fa-book', destino: 'glossario', titulo: 'Acuracidade', descricao: 'Percentual de conformidade entre o estoque físico e o registrado no sistema.', keywords: 'inventário divergência indicador' },
+            { tipo: 'Glossário', icone: 'fas fa-book', destino: 'glossario', titulo: 'Giro de Estoque', descricao: 'Indicador que mede quantas vezes o estoque foi renovado em um período.', keywords: 'consumo estoque médio kpi' },
+            { tipo: 'Glossário', icone: 'fas fa-book', destino: 'glossario', titulo: 'Cross Docking', descricao: 'Produto recebido e direcionado imediatamente à expedição, sem armazenagem.', keywords: 'distribuição recebimento expedição' }
+        ];
+
+        const documentosBusca = [
+            { tipo: 'Documento', icone: 'fas fa-file-pdf', destino: 'materiais', titulo: 'Manual de Procedimentos - Armazenagem', descricao: 'Fluxos completos e políticas operacionais em PDF.', keywords: 'manual procedimentos armazenagem políticas' },
+            { tipo: 'Documento', icone: 'fas fa-file-powerpoint', destino: 'materiais', titulo: 'Apresentação - Recebimento e Conferência', descricao: 'Slides para treinamento da equipe operacional.', keywords: 'ppt treinamento recebimento conferencia' },
+            { tipo: 'Documento', icone: 'fas fa-video', destino: 'materiais', titulo: 'Vídeo - Boas Práticas de Endereçamento', descricao: 'Demonstração prática do sistema de localização.', keywords: 'youtube vídeo endereçamento localização' },
+            { tipo: 'Documento', icone: 'fas fa-file-alt', destino: 'materiais', titulo: 'Planilha de Indicadores Logísticos', descricao: 'Modelo para cálculo de KPIs e acompanhamento de performance.', keywords: 'xls planilha indicadores kpis métricas' },
+            { tipo: 'Documento', icone: 'fas fa-book', destino: 'materiais', titulo: 'Guia Rápido - Controle de Estoque', descricao: 'Resumo com fórmulas e conceitos essenciais.', keywords: 'pdf guia controle estoque fórmulas' }
+        ];
+
+        function limparHTML(html) {
+            const temp = document.createElement('div');
+            temp.innerHTML = html;
+            return temp.textContent || temp.innerText || '';
         }
 
-        document.getElementById('searchBtn').addEventListener('click', () => {
+        function normalizarBusca(texto) {
+            return String(texto).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        }
+
+        function escaparHTML(texto) {
+            return String(texto).replace(/[&<>"']/g, char => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            }[char]));
+        }
+
+        function criarIndiceBusca() {
+            const modulosBusca = Object.entries(modulos).map(([destino, mod]) => ({
+                tipo: 'Módulo',
+                icone: 'fas fa-book-open',
+                destino,
+                titulo: mod.titulo,
+                descricao: limparHTML(mod.conteudo).slice(0, 130),
+                keywords: limparHTML(mod.conteudo)
+            }));
+
+            return [...modulosBusca, ...glossarioBusca, ...documentosBusca].map(item => ({
+                ...item,
+                textoBusca: normalizarBusca(`${item.tipo} ${item.titulo} ${item.descricao} ${item.keywords || ''}`)
+            }));
+        }
+
+        const indiceBusca = criarIndiceBusca();
+
+        function buscarTermo(termo) {
+            const termoNormalizado = normalizarBusca(termo.trim());
+            if (!termoNormalizado) return [];
+
+            const palavras = termoNormalizado.split(/\s+/).filter(Boolean);
+            return indiceBusca.map(item => {
+                const titulo = normalizarBusca(item.titulo);
+                const descricao = normalizarBusca(item.descricao);
+                let pontuacao = 0;
+
+                palavras.forEach(palavra => {
+                    if (titulo.includes(palavra)) pontuacao += 4;
+                    if (descricao.includes(palavra)) pontuacao += 2;
+                    if (item.textoBusca.includes(palavra)) pontuacao += 1;
+                });
+                if (titulo.startsWith(termoNormalizado)) pontuacao += 3;
+
+                return { ...item, pontuacao };
+            }).filter(item => item.pontuacao > 0)
+              .sort((a, b) => b.pontuacao - a.pontuacao || a.titulo.localeCompare(b.titulo))
+              .slice(0, 8);
+        }
+
+        function esconderResultadosBusca() {
+            const resultsDiv = document.getElementById('searchResults');
+            resultsDiv.style.display = 'none';
+            resultsDiv.innerHTML = '';
+        }
+
+        function renderizarResultadosBusca() {
             const termo = document.getElementById('searchInput').value.trim();
             const resultsDiv = document.getElementById('searchResults');
-            if (!termo) { resultsDiv.style.display = 'none'; return; }
+            if (!termo) {
+                esconderResultadosBusca();
+                return;
+            }
+
             const resultados = buscarTermo(termo);
-            resultsDiv.innerHTML = resultados.length ? resultados.map(r => `<div class="result-item" onclick="navigateTo('${r.key}'); document.getElementById('searchResults').style.display='none';"><strong>${r.titulo}</strong><br><small>${r.trecho}</small></div>`).join('') : '<p style="padding:8px;">Nenhum módulo encontrado.</p>';
+            resultsDiv.innerHTML = resultados.length
+                ? resultados.map(r => `
+                    <div class="result-item" data-page="${escaparHTML(r.destino)}" role="button" tabindex="0">
+                        <i class="${escaparHTML(r.icone)}"></i>
+                        <div>
+                            <span class="result-type">${escaparHTML(r.tipo)}</span>
+                            <strong>${escaparHTML(r.titulo)}</strong>
+                            <p>${escaparHTML(r.descricao)}</p>
+                        </div>
+                    </div>
+                `).join('')
+                : '<p class="search-empty">Nenhum resultado encontrado em módulos, glossário ou documentos.</p>';
             resultsDiv.style.display = 'block';
+        }
+
+        function abrirResultadoBusca(elemento) {
+            const pageId = elemento.dataset.page;
+            if (!pageId) return;
+            navigateTo(pageId);
+            esconderResultadosBusca();
+            document.getElementById('searchInput').blur();
+        }
+
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchBtn');
+        const searchResults = document.getElementById('searchResults');
+
+        searchInput.addEventListener('input', renderizarResultadosBusca);
+        searchButton.addEventListener('click', renderizarResultadosBusca);
+        searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const primeiroResultado = buscarTermo(searchInput.value)[0];
+                if (primeiroResultado) {
+                    navigateTo(primeiroResultado.destino);
+                    esconderResultadosBusca();
+                }
+            }
+            if (e.key === 'Escape') esconderResultadosBusca();
         });
-        document.getElementById('searchInput').addEventListener('keypress', (e) => { if (e.key === 'Enter') document.getElementById('searchBtn').click(); });
+        searchResults.addEventListener('click', (e) => {
+            const item = e.target.closest('.result-item');
+            if (item) abrirResultadoBusca(item);
+        });
+        searchResults.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const item = e.target.closest('.result-item');
+                if (item) abrirResultadoBusca(item);
+            }
+        });
+        document.addEventListener('click', (e) => {
+            if (!searchInput.contains(e.target) && !searchResults.contains(e.target) && !searchButton.contains(e.target)) {
+                esconderResultadosBusca();
+            }
+        });
 
         carregarEstoque();
         if (location.hash) navigateTo(location.hash.replace('#', ''));
